@@ -1,0 +1,43 @@
+@import "../index.scss";
+
+@mixin nav-link-mixin {
+  width: 200px;
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+  text-decoration: none;
+  align-items: center;
+}
+
+.main-admin-page__nav {
+  border-bottom: solid 1px $borderColor;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-link {
+    @include nav-link-mixin;
+    color: $secondaryTextColor;
+  }
+
+  &-link:hover {
+    color: $secondaryColor;
+  }
+
+  &-linkActive {
+    @include nav-link-mixin;
+    // border: 1px solid $secondaryColor;
+    box-shadow: inset 0px 0px 3px 0px $secondaryColor;
+    border-radius: 20px;
+    color: $secondaryColor;
+    background-color: rgba($secondaryColor, 0.05);
+  }
+}
+
+.main-admin-page__main {
+  height: calc(100vh - 70px - 1px);
+  overflow-y: hidden;
+}

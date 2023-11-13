@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { RouterLinks } from "./types/routerLinks.ts";
 
-function App() {
-  const [count, setCount] = useState(0)
+import MainAdminPage from "./pages/MainAdminPage.tsx";
+import SignInPage from "./pages/SignInPage.tsx";
+import ItemsPage from "./pages/adminPages/ItemsPage.tsx";
+import OrdersPage from "./pages/adminPages/OrdersPage.tsx";
 
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
+const router = createBrowserRouter([
+  {
+    path: RouterLinks.EMPTY_PATH,
+    Component: MainAdminPage,
+    children: [
+      {
+        path: RouterLinks.ITEMS_PATH,
+        Component: ItemsPage,
+      },
+      {
+        path: RouterLinks.ORDERS_PATH,
+        Component: OrdersPage,
+      },
+    ],
+  },
+  {
+    path: RouterLinks.SIGN_IN_PATH,
+    Component: SignInPage,
+  },
+]);
+
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline>
+        <RouterProvider router={router} />
+      </CssBaseline>
+    </ThemeProvider>
+  );
 }
-
-export default App

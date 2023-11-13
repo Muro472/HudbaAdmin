@@ -1,0 +1,36 @@
+@import "../index.scss";
+
+.items-page__main {
+  height: 100%;
+  display: flex;
+
+  &-nav {
+    width: 200px;
+    height: 100%;
+    border-right: solid 1px $borderColor;
+  }
+
+  &-main {
+    flex: 1;
+    overflow: auto;
+
+    &-main {
+      min-height: calc(100vh - 70px - 90px - 1px);
+    }
+
+    &-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 90px;
+    }
+  }
+}
+
+.items-page__main-main::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+
+.items-page__main-main::-webkit-scrollbar-thumb {
+  background-color: #4d4d4d; /* Dark thumb color */
+}

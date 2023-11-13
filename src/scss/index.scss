@@ -1,0 +1,17 @@
+$mainBgColor: #111011;
+
+$mainTextColor: #fffeff;
+$secondaryTextColor: #8f8e8f;
+
+$borderColor: #515051;
+
+$primaryColor: #7c2897;
+$secondaryColor: #b296da;
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: $mainBgColor;
+  color: $mainTextColor;
+}
