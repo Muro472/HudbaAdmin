@@ -1,24 +1,48 @@
 @import "../index.scss";
 
+$navWidth: 200px;
+
 .items-page__main {
   height: 100%;
   display: flex;
 
   &-nav {
-    width: 200px;
+    width: $navWidth;
     height: 100%;
     border-right: solid 1px $borderColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-item {
+      width: $navWidth;
+      padding: 10px;
+      cursor: pointer;
+
+      &-active {
+        background-color: rgba($secondaryColor, 0.05);
+      }
+    }
+
+    &-item:hover {
+      background-color: rgba($secondaryColor, 0.05);
+    }
   }
 
   &-main {
     flex: 1;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
 
     &-main {
-      min-height: calc(100vh - 70px - 90px - 1px);
+      flex: 1;
+      overflow: auto;
     }
 
     &-pagination {
+      border-top: solid 1px $borderColor;
+
       display: flex;
       justify-content: center;
       align-items: center;
@@ -27,10 +51,10 @@
   }
 }
 
-.items-page__main-main::-webkit-scrollbar {
+.items-page__main-main-main::-webkit-scrollbar {
   width: 12px; /* Set the width of the scrollbar */
 }
 
-.items-page__main-main::-webkit-scrollbar-thumb {
+.items-page__main-main-main::-webkit-scrollbar-thumb {
   background-color: #4d4d4d; /* Dark thumb color */
 }

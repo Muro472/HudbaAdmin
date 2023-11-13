@@ -12,11 +12,33 @@
 }
 
 .main-admin-page__nav {
-  border-bottom: solid 1px $borderColor;
+  border-bottom: solid 2px $borderColor;
   height: 70px;
   display: flex;
   justify-content: center;
-  align-items: center;
+
+  &-logo {
+    width: 200px;
+    // border-right: solid 1px $borderColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-main {
+      width: 80%;
+    }
+  }
+
+  &-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+
+  &-action {
+    width: 200px;
+  }
 
   &-link {
     @include nav-link-mixin;
@@ -38,6 +60,6 @@
 }
 
 .main-admin-page__main {
-  height: calc(100vh - 70px - 1px);
+  height: calc(100vh - 70px - 2px);
   overflow-y: hidden;
 }

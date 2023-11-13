@@ -1,0 +1,20 @@
+.icon-button {
+  &-wrap {
+    display: flex;
+  }
+
+  &-button {
+    height: 35px;
+    width: 35px;
+    border-radius: 25%;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-button:hover {
+    background-color: rgba(white, 0.05);
+    cursor: pointer;
+  }
+}

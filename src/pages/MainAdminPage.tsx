@@ -11,13 +11,24 @@ export default function MainAdminPage() {
   return (
     <>
       <nav className="main-admin-page__nav">
-        <NavLink className={isActiveNavLink} to="/items">
-          Items
-        </NavLink>
+        <div className="main-admin-page__nav-logo">
+          <img
+            src="src/assets/logo.png"
+            className="main-admin-page__nav-logo-main"
+          />
+        </div>
 
-        <NavLink className={isActiveNavLink} to="/orders">
-          Orders
-        </NavLink>
+        <div className="main-admin-page__nav-main">
+          <NavLink className={isActiveNavLink} to="/items">
+            Items
+          </NavLink>
+
+          <NavLink className={isActiveNavLink} to="/orders">
+            Orders
+          </NavLink>
+        </div>
+
+        <div className="main-admin-page__nav-action"></div>
       </nav>
 
       <main className="main-admin-page__main">
