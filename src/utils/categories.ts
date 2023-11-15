@@ -8,3 +8,5 @@ export const categories = [
   "souvenirs",
   "vinyl",
 ] as const;
+
+export type categoriesType = (typeof categories)[number];

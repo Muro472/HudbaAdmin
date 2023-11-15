@@ -5,10 +5,10 @@ export interface GetProductsRequestType {
 }
 
 export interface CreateOrUpdateProductRequestType {
-  title: string;
-  desc: string;
-  img: string;
-  category: string;
-  brand: string;
-  price: string;
+  title?: string;
+  desc?: string;
+  img?: string;
+  category?: string;
+  brand?: string;
+  price?: number;
 }

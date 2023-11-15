@@ -20,11 +20,11 @@ export default function MainAdminPage() {
 
         <div className="main-admin-page__nav-main">
           <NavLink className={isActiveNavLink} to="/items">
-            Items
+            Produkt
           </NavLink>
 
           <NavLink className={isActiveNavLink} to="/orders">
-            Orders
+            Objednávka
           </NavLink>
         </div>
 

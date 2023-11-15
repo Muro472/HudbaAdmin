@@ -14,19 +14,15 @@ import { IProductFromList } from "../../types/responses";
 
 interface IComponentProps {
   rows: IProductFromList[];
-  onRefresh: () => void;
+  handleSettingsClick: (item: IProductFromList) => void;
+  handleDeleteClick: (item: IProductFromList) => void;
 }
 
-export default function ItemsTable({ rows, onRefresh }: IComponentProps) {
-  const handleSettingsClick = () => {
-    console.log("settings");
-  };
-
-  const handleDeleteClick = () => {
-    console.log("delete");
-    onRefresh();
-  };
-
+export default function ItemsTable({
+  rows,
+  handleSettingsClick,
+  handleDeleteClick,
+}: IComponentProps) {
   return (
     <Table>
       <TableHead>
@@ -36,6 +32,7 @@ export default function ItemsTable({ rows, onRefresh }: IComponentProps) {
           <TableCell align="left">Aktualizované dňa</TableCell>
           <TableCell align="left">značka</TableCell>
           <TableCell align="left">Charakteristika</TableCell>
+          <TableCell align="left">Cena</TableCell>
           <TableCell align="right"></TableCell>
         </TableRow>
       </TableHead>
@@ -50,16 +47,19 @@ export default function ItemsTable({ rows, onRefresh }: IComponentProps) {
             <TableCell align="left">{timestamp(row.updatedAt)}</TableCell>
             <TableCell align="left">{textShortener(row.brand, 30)}</TableCell>
             <TableCell align="left">{textShortener(row.desc, 30)}</TableCell>
+            <TableCell align="left">{row.price}</TableCell>
             <TableCell align="right">
               <IconButtonComponent
-                icons={{
-                  settings: <Settings />,
-                  delete: <DeleteOutline sx={{ color: "red" }} />,
-                }}
-                clickHandlers={{
-                  settings: handleSettingsClick,
-                  delete: handleDeleteClick,
-                }}
+                icons={[
+                  {
+                    icon: <Settings />,
+                    onClick: () => handleSettingsClick(row),
+                  },
+                  {
+                    icon: <DeleteOutline sx={{ color: "red" }} />,
+                    onClick: () => handleDeleteClick(row),
+                  },
+                ]}
               />
             </TableCell>
           </TableRow>
