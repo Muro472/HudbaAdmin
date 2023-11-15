@@ -35,6 +35,12 @@ $navWidth: 200px;
     display: flex;
     flex-direction: column;
 
+    &-head {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1%;
+    }
+
     &-main {
       flex: 1;
       overflow: auto;
