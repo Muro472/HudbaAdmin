@@ -1,6 +1,2 @@
-export const textShortener = (text: string, maxLength: number) => {
-  if (text.length > maxLength) {
-    return text.slice(0, maxLength) + "...";
-  }
-  return text;
-};
+export const textShortener = (text: string, maxLength: number) =>
+  text.length > maxLength ? text.slice(0, maxLength) + "..." : text;

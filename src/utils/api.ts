@@ -3,9 +3,14 @@ import { AppApiService } from "./axios";
 import {
   GetProductsRequestType,
   CreateOrUpdateProductRequestType,
+  GetOrdersRequestType,
 } from "../types/requests";
 
-import { GetProductsResponseType } from "../types/responses";
+import {
+  GetProductsResponseType,
+  IProductFromList,
+  GetOrdersResponseType,
+} from "../types/responses";
 
 class ApiService extends AppApiService {
   //products
@@ -16,6 +21,15 @@ class ApiService extends AppApiService {
       method: "get",
       url: "/products",
       params: payload,
+    });
+  }
+
+  async getProductById(
+    id: string
+  ): Promise<[null, IProductFromList[]] | [unknown]> {
+    return this.axiosCall<IProductFromList[]>({
+      method: "get",
+      url: `/products/cart/${id}`,
     });
   }
 
@@ -35,21 +49,36 @@ class ApiService extends AppApiService {
   ): Promise<[null, void] | [unknown]> {
     return this.axiosCall<void>({
       method: "put",
-      url: `/products`,
+      url: `/products/${id}`,
       data,
-      params: { id },
     });
   }
 
   async deleteProduct(id: string): Promise<[null, void] | [unknown]> {
     return this.axiosCall<void>({
       method: "delete",
-      url: `/products`,
-      params: { id },
+      url: `/products/${id}`,
     });
   }
 
   //orders
+
+  async getOrders(
+    payload: GetOrdersRequestType
+  ): Promise<[null, GetOrdersResponseType] | [unknown]> {
+    return this.axiosCall<GetOrdersResponseType>({
+      method: "get",
+      url: "/orders",
+      params: payload,
+    });
+  }
+
+  async deleteOrder(id: string): Promise<[null, void] | [unknown]> {
+    return this.axiosCall<void>({
+      method: "delete",
+      url: `/orders/${id}`,
+    });
+  }
 }
 
 export const api = new ApiService();

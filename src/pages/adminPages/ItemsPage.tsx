@@ -33,6 +33,7 @@ export default function ItemsPage() {
   const [dialogType, setDialogType] = useState<
     "delete" | "edit" | "create" | ""
   >("");
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleChangeParams = (value: string) => {

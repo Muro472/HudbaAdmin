@@ -7,6 +7,7 @@ import { categories } from "../../utils/categories.ts";
 import { api } from "../../utils/api.ts";
 import { CreateOrUpdateProductRequestType } from "../../types/requests.ts";
 import { categoryLabelChanger } from "../../utils/categoryLabelChanger.ts";
+import { mainShopUrl } from "../../utils/mainShopUrl.ts";
 
 import PromptOverlayLayout from "../layouts/PromptOverlayLayout.tsx";
 import { useSearchParams } from "react-router-dom";
@@ -75,7 +76,7 @@ export default function CreateOrEditItemDialog({
       )
       .join("&");
 
-    window.open("http://localhost:9000/en/admin/demo?" + queryString, "_blank");
+    window.open(mainShopUrl + "/en/admin/demo?" + queryString, "_blank");
   };
 
   const handleSubmit = async () => {

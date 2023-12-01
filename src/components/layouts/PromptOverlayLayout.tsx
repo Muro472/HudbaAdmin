@@ -15,6 +15,7 @@ interface IComponentProps {
   title: string;
 
   optionalButton?: ReactNode;
+  disableActions?: boolean;
 
   handleClose: () => void;
   handleYes: () => void;
@@ -24,6 +25,7 @@ export default function PromptOverlayLayout({
   children,
   width,
   optionalButton,
+  disableActions,
   handleClose,
   handleYes,
 }: IComponentProps) {
@@ -37,11 +39,13 @@ export default function PromptOverlayLayout({
         {children}
       </DialogContentText>
 
-      <DialogActions sx={{ width: getWidth(width) }}>
-        {optionalButton}
-        <Button onClick={handleClose}>Zavrieť</Button>
-        <Button onClick={handleYes}>Odoslať</Button>
-      </DialogActions>
+      {disableActions ? null : (
+        <DialogActions sx={{ width: getWidth(width) }}>
+          {optionalButton}
+          <Button onClick={handleClose}>Zavrieť</Button>
+          <Button onClick={handleYes}>Odoslať</Button>
+        </DialogActions>
+      )}
     </>
   );
 }
