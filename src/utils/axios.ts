@@ -5,8 +5,8 @@ const appRequestSuccessInterceptor = (config: InternalAxiosRequestConfig) => {
 };
 
 export const http = axios.create({
-  // baseURL: "http://16.170.235.178:8080/api",
-  baseURL: "http://localhost:8080/api",
+  baseURL: "http://16.170.235.178:8080/api",
+  // baseURL: "http://localhost:8080/api",
   timeout: 50000,
 });
 
