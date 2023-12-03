@@ -5,7 +5,11 @@ import { TextField, Button, Autocomplete } from "@mui/material";
 // import { categories } from "../../utils/categories.ts";
 import { api } from "../../utils/api.ts";
 // import { CreateOrUpdateProductRequestType } from "../../types/requests.ts";
-import { IOrderItem, IProductFromList } from "../../types/responses.ts";
+import {
+  IOrderItem,
+  IProductFromList,
+  IOrderEdit,
+} from "../../types/responses.ts";
 import { mainShopUrl } from "../../utils/mainShopUrl.ts";
 
 import PromptOverlayLayout from "../layouts/PromptOverlayLayout.tsx";
@@ -14,8 +18,10 @@ import "../../scss/pages/_orders-page.scss";
 
 const renameTopEntries = (key: string) => {
   switch (key) {
-    case "userNameSurname":
-      return "Meno/Priezvisko";
+    case "userName":
+      return "Meno";
+    case "userSurname":
+      return "Priezvisko";
     case "userEmail":
       return "Email";
     case "userAddress":
@@ -51,12 +57,17 @@ interface IComponentProps {
   handleYes: () => void;
 }
 
-export default function EditOrderDialog({ item, title }: IComponentProps) {
+export default function EditOrderDialog({
+  item,
+  title,
+  handleYes,
+}: IComponentProps) {
   //top
 
   const topState = useMemo(
     () => ({
-      userNameSurname: `${item.name} ${item.surname}`,
+      userName: item.name,
+      userSurname: item.surname,
       userEmail: item.email,
       userAddress: item.address,
       userCity: item.city,
@@ -96,6 +107,31 @@ export default function EditOrderDialog({ item, title }: IComponentProps) {
         })
       );
     }
+  };
+
+  const editOrder = async () => {
+    const data: IOrderEdit = {};
+
+    if (topState.userName !== item.name) data.name = topState.userName;
+    if (topState.userSurname !== item.surname)
+      data.surname = topState.userSurname;
+    if (topState.userEmail !== item.email) data.email = topState.userEmail;
+    if (topState.userAddress !== item.address)
+      data.address = topState.userAddress;
+    if (topState.userCity !== item.city) data.city = topState.userCity;
+    if (topState.userCountry !== item.country)
+      data.country = topState.userCountry;
+    if (topState.userZip !== item.postalCode)
+      data.postalCode = topState.userZip;
+    if (topState.userPhone !== item.phone) data.phone = topState.userPhone;
+    if (topState.orderApartment !== item.apartment)
+      data.apartment = topState.orderApartment;
+
+    if (orderStatus !== item.status) data.status = orderStatus;
+
+    await api.editOrder(item._id, data);
+
+    handleYes();
   };
 
   const handleOpenItem = (id: string) => {
@@ -138,9 +174,11 @@ export default function EditOrderDialog({ item, title }: IComponentProps) {
             sx={{ marginTop: "10px" }}
             fullWidth
             disabled={orderStatus === item.status}
-            onClick={() => {}}
+            onClick={() => {
+              editOrder();
+            }}
           >
-            Uložiť stav
+            Uložiť
           </Button>
         </div>
         <div className="_orders-page__dialog-bottom">

@@ -10,6 +10,7 @@ import {
   GetProductsResponseType,
   IProductFromList,
   GetOrdersResponseType,
+  IOrderEdit,
 } from "../types/responses";
 
 class ApiService extends AppApiService {
@@ -75,12 +76,12 @@ class ApiService extends AppApiService {
 
   async editOrder(
     id: string,
-    status: string
+    data: IOrderEdit
   ): Promise<[null, void] | [unknown]> {
     return this.axiosCall<void>({
       method: "put",
       url: `/orders/${id}`,
-      data: { status },
+      data,
     });
   }
 

@@ -36,6 +36,19 @@ export interface IOrderItem {
   _id: string;
 }
 
+export interface IOrderEdit {
+  address?: string;
+  apartment?: string;
+  city?: string;
+  country?: string;
+  email?: string;
+  name?: string;
+  phone?: string;
+  postalCode?: string;
+  status?: string;
+  surname?: string;
+}
+
 export type GetOrdersResponseType = IOrderItem[];
 
 export interface GetProductsResponseType {

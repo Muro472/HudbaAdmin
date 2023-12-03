@@ -19,12 +19,6 @@ export default function OrdersPage() {
   const [dialogType, setDialogType] = useState<"delete" | "edit" | "">("");
   const [dialogItem, setDialogItem] = useState<IOrderItem | null>(null);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
-  // const [totalPages, setTotalPages] = useState<number>(1);
-
-  // const handlePaginationPageChange = (value: number) => {
-  //   setPaginationPage(value);
-  //   getData(value);
-  // };
 
   const handleSettingsClick = (item: IOrderItem) => {
     setDialogType("edit");
@@ -43,15 +37,15 @@ export default function OrdersPage() {
   };
 
   const handleDialogSubmitItem = () => {
+    getData(paginationPage);
     setOpenDialog(false);
-    // handleChangeParams(String(searchParams.get("category")));
   };
 
   const handleDeleteItem = async () => {
     if (dialogItem === null) return;
-    // await api.deleteProduct(dialogItem._id);
+    await api.deleteOrder(dialogItem._id);
     setOpenDialog(false);
-    // handleChangeParams(String(searchParams.get("category")));
+    getData(paginationPage);
   };
 
   const getData = async (page: number) => {
