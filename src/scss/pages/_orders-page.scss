@@ -22,6 +22,8 @@
 
   &-bottom {
     @include block-style;
+    max-height: 320px;
+    overflow-y: scroll;
 
     &-item {
       padding: 5px;

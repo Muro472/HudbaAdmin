@@ -73,6 +73,17 @@ class ApiService extends AppApiService {
     });
   }
 
+  async editOrder(
+    id: string,
+    status: string
+  ): Promise<[null, void] | [unknown]> {
+    return this.axiosCall<void>({
+      method: "put",
+      url: `/orders/${id}`,
+      data: { status },
+    });
+  }
+
   async deleteOrder(id: string): Promise<[null, void] | [unknown]> {
     return this.axiosCall<void>({
       method: "delete",

@@ -17,8 +17,8 @@ interface IComponentProps {
   optionalButton?: ReactNode;
   disableActions?: boolean;
 
-  handleClose: () => void;
-  handleYes: () => void;
+  handleClose?: () => void;
+  handleYes?: () => void;
 }
 export default function PromptOverlayLayout({
   title,

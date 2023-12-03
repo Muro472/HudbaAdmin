@@ -51,12 +51,7 @@ interface IComponentProps {
   handleYes: () => void;
 }
 
-export default function EditOrderDialog({
-  item,
-  title,
-  handleClose,
-  handleYes,
-}: IComponentProps) {
+export default function EditOrderDialog({ item, title }: IComponentProps) {
   //top
 
   const topState = useMemo(
@@ -76,7 +71,7 @@ export default function EditOrderDialog({
   );
 
   //status
-  const [orderStatus, setOrderStatus] = useState("");
+  const [orderStatus, setOrderStatus] = useState(item.status);
   const orderStatuses = ["nová", "v spracovaní", "dokončená", "zrušená"];
   //bottom
   const [orderItems, setOrderItems] = useState<IStateOrderItem[]>([]);
@@ -103,12 +98,6 @@ export default function EditOrderDialog({
     }
   };
 
-  const handleSubmit = async () => {
-    // await editItem();
-
-    handleYes();
-  };
-
   const handleOpenItem = (id: string) => {
     window.open(mainShopUrl + "/en/item/" + id, "_blank");
   };
@@ -118,13 +107,7 @@ export default function EditOrderDialog({
   }, []);
 
   return (
-    <PromptOverlayLayout
-      handleClose={handleClose}
-      handleYes={handleSubmit}
-      disableActions
-      width={600}
-      title={title}
-    >
+    <PromptOverlayLayout disableActions width={600} title={title}>
       <>
         <div className="_orders-page__dialog-top">
           {Object.entries(topState).map(([key, value]) => (
