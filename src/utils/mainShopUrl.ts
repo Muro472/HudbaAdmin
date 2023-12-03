@@ -1,1 +1,1 @@
-export const mainShopUrl = "http://localhost:9000";
+export const mainShopUrl = "https://hudba-shop.web.app";
